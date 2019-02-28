@@ -6,4 +6,4 @@ you may want to run following command *_ALTER USER 'root'@'localhost' IDENTIFIED
   
 
 
-![Alt text](/assets/images/todo.pdf?raw=true "TODO")
+![Alt text](./assets/images/todo.pdf?raw=true "TODO")
