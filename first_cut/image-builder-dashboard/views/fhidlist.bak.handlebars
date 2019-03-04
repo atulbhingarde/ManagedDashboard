@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Image Search</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Search
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+
+
+                <script>
+
+                    $(document).on("click", "#search", function (e) {
+                        // the "href" attribute of .modal-trigger must specify the modal ID
+                        e.preventDefault();
+
+                        var sinput = $("#search-input").val().trim();
+                        console.log(sinput);
+                        //$("#image-view").text("");
+
+                        var searchData = { "BaseOS": { "StringMatch": sinput } };
+
+                        // Example test curl -XPOST https://images.cloudpod.apps.ge.com/v0.0/query  -d  '{"BaseOS": {"StringMatch": ".*Ubuntu.*"}}'
+
+                        console.log(searchData);
+                        $.ajax({
+                            type: 'POST',
+                            dataType: 'json',
+                            contentType: 'text/plain',
+                            data: JSON.stringify(searchData),
+                            url: "https://images.cloudpod.apps.ge.com/v0.0/query",
+                            //headers: { "Authorization": "Token token=0f78b8301f96ce56b8fdb3364f339bd3" },
+                            async: false,
+                            success: function (results) {
+                                var imageList = results["Results"];
+                                console.log(imageList);
+                                //for (var i = 0; i < imageList.length; i++) {
+                                //    var p = $("<p>").text("Results: " + imageList[i].ImageID + " Version: " + imageList[i].Version + " BaseOS: " + imageList[i].BaseOS);
+                                //    $("#image-view").append(p);
+                                //}
+                                $('#dataTables-images').DataTable({
+                                    responsive: true,
+                                    data: imageList,
+                                    columns: [
+                                        { data: "ImageID" },
+                                        { data: "Version" },
+                                        { data: "BaseOS" },
+                                    ]
+                                });
+
+
+                            }
+                        }
+                        )
+                    });
+                </script>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3" id="tag-srch-div">
+                            <h1>Enter Search</h1>
+                            <!-- <form id="tag-form"> -->
+                            <div class="input-group custom-search-form">
+                                <input type="text" id="search-input" class="form-control" placeholder="search string">
+                                <input id="search" class="btn-default" type="submit" value="Search">
+                            </div>
+                            <!-- Button triggers new movie to be added -->
+
+                            <!-- </form> -->
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12" id="image-view">
+                            <table class="table table-striped table-bordered table-hover compact" id="dataTables-images">
+                                <thead>
+                                    <tr>
+                                        <th>Image ID</th>
+                                        <th>Version</th>
+                                        <th>BaseOS</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
