@@ -1,0 +1,26 @@
+{
+    "name": "image-maker-dashboard",
+    "description": "Node Express web application for viewing Image Details",
+    "version": "0.0.1",
+    "private": true,
+    "author": "tim.mcgowan@ge.com",
+    "license": "",
+    "dependencies": {
+        "aws-sdk": "^2.328.0",
+        "chai": "^4.2.0",
+        "chai-http": "^4.2.1",
+        "express": "^4.16.2",
+        "express-handlebars": "^3.0.0",
+        "nyc": "^13.3.0"
+    },
+    "devDependencies": {
+        "mocha": "5.0.0",
+        "supertest": "3.0.0",
+        "unit.js": "^2.1.0"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "test": "mocha --recursive tests --exit",
+        "nyc-test": "env NODE_ENV=development nyc --reporter=text mocha --exit"
+    }
+}
