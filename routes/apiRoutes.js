@@ -1,6 +1,9 @@
 // LOAD dependencies
 var AWS = require('aws-sdk');
 
+var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
+AWS.config.credentials = credentials;
+console.log("this is credentials 1 " + AWS.config.credentials);
 // AWS Config details 
 AWS.config.apiVersions = {
     ec2: '2016-11-15',
@@ -55,7 +58,7 @@ module.exports = function (app) {
     app.get("/api/find", function (req, res) {
         docClient.get(dparams, function (err, data) {
             if (err) {
-                res.send("Error", err);
+                res.status("Error").send(err);
             } else {
                 res.send(data.Item);
             }
@@ -65,7 +68,7 @@ module.exports = function (app) {
     app.get("/api/count", function (req, res) {
         docClient.scan(scanparams, function (err, data) {
             if (err) {
-                res.send("Error", err);
+                res.status("Error").send(err);
             } else {
                 console.log(data);
                 res.send(data);

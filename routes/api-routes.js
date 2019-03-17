@@ -10,7 +10,9 @@ AWS.config.apiVersions = {
 AWS.config.update({
   region: 'us-east-1'
 });
-
+var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
+AWS.config.credentials = credentials;
+console.log("this is credentials " + AWS.config.credentials);
 var params = {
   DryRun: false,
   Owners: ['self']

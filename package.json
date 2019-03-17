@@ -14,13 +14,13 @@
         "nyc": "^13.3.0"
     },
     "devDependencies": {
-        "mocha": "5.0.0",
+        "mocha": "^5.0.0",
         "supertest": "3.0.0",
         "unit.js": "^2.1.0"
     },
     "scripts": {
         "start": "node server.js",
         "test": "mocha --recursive tests --exit",
-        "nyc-test": "env NODE_ENV=development nyc --reporter=text mocha --exit"
+        "nyc-test": "env NODE_ENV=development nyc --reporter=html mocha --recursive tests --exit"
     }
 }

@@ -36,7 +36,7 @@
                             contentType: 'text/plain',
                             data: JSON.stringify(searchData),
                             url: "https://images.cloudpod.apps.ge.com/v0.0/query",
-                            //headers: { "Authorization": "Token token=0f78b8301f96ce56b8fdb3364f339bd3" },
+                            headers: { "Authorization": "Token token=0f78b8301f96ce56b8fdb3364f339bd3" },
                             async: false,
                             success: function (results) {
                                 var imageList = results["Results"];
