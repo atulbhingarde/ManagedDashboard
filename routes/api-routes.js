@@ -16,7 +16,7 @@ console.log("this is credentials " + AWS.config.credentials);
 var params = {
   DryRun: false,
   Owners: ['self']
-}
+};
 
 var ec2 = new AWS.EC2();
 var docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });

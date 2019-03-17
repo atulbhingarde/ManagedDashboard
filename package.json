@@ -21,6 +21,6 @@
     "scripts": {
         "start": "node server.js",
         "test": "mocha --recursive tests --exit",
-        "nyc-test": "env NODE_ENV=development nyc --reporter=html mocha --recursive tests --exit"
+        "nyc-test": "env NODE_ENV=development nyc --report-dir=public/pages/coverage/ --reporter=html mocha --recursive tests -t coverage-full --exit"
     }
 }

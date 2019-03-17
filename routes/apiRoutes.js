@@ -17,7 +17,7 @@ AWS.config.update({
 var params = {
     DryRun: false,
     Owners: ['self']
-}
+};
 
 var ec2 = new AWS.EC2();
 var docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
