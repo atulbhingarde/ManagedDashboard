@@ -3,7 +3,7 @@
     "description": "Node Express web application for viewing Image Details",
     "version": "0.0.1",
     "private": true,
-    "author": "tim.mcgowan@ge.com",
+    "author": "atul.bhingarde@ge.com",
     "license": "",
     "dependencies": {
         "aws-sdk": "^2.328.0",

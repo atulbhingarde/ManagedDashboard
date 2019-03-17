@@ -3,7 +3,12 @@ var AWS = require('aws-sdk');
 
 var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
 AWS.config.credentials = credentials;
-console.log("this is credentials 1 " + AWS.config.credentials);
+// console.log("this is credentials 1 " + AWS.config.credentials);
+AWS.config.credentials.accessKeyId = process.env.id;
+AWS.config.credentials.secretAccessKey = process.env.key;
+
+// console.log("This is id" + AWS.config.credentials.secretAccessKey );
+// console.log("here port1 is " + process.env.PORT1);
 // AWS Config details 
 AWS.config.apiVersions = {
     ec2: '2016-11-15',
