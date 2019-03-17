@@ -12,6 +12,8 @@ AWS.config.update({
 });
 var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
 AWS.config.credentials = credentials;
+AWS.config.credentials.accessKeyId = process.env.myid;
+AWS.config.credentials.secretAccessKey = process.env.key;
 console.log("this is credentials " + AWS.config.credentials);
 var params = {
   DryRun: false,
