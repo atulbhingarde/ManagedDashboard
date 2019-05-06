@@ -23,8 +23,8 @@ app.set("view engine", "handlebars");
 app.use(express.static(publicDir))
 
 // Router
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+require("./routes/apiRoutes")(app)
+require("./routes/htmlRoutes")(app)
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {

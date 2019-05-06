@@ -13,7 +13,7 @@ app.use("/public", express.static(publicDir))
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(express.static(publicDir))
+app.use(express.static(publicDir));
 
 app.listen(port, () =>
   console.log(`Server is listening on port ${port}.`)
