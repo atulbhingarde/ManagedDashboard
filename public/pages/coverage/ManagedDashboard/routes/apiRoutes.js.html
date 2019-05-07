@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55.17% </span>
+        <span class="strong">57.58% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/29</span>
+        <span class='fraction'>19/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">57.14% </span>
+        <span class="strong">59.38% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>16/28</span>
+        <span class='fraction'>19/32</span>
       </div>
     </div>
     <p class="quiet">
@@ -125,14 +125,30 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,7 +157,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,6 +204,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -206,10 +236,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// LOAD dependencies
 var AWS = require('aws-sdk');
+var myarr = ['self'];
+console.log("ha ha "+myarr);
+var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'})
+AWS.config.credentials = credentials ;
+// console.log("this is credentials 1 " + AWS.config.credentials);
+AWS.config.credentials.accessKeyId = process.env.myid ;
+AWS.config.credentials.secretAccessKey = process.env.key ;
 &nbsp;
-var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
-AWS.config.credentials = credentials;
-console.log("this is credentials 1 " + AWS.config.credentials);
+// console.log("This is id" + AWS.config.credentials.secretAccessKey );
+// console.log("here port1 is " + process.env.PORT1);
 // AWS Config details 
 AWS.config.apiVersions = {
     ec2: '2016-11-15',
@@ -222,11 +258,16 @@ AWS.config.update({
 &nbsp;
 var params = {
     DryRun: false,
-    Owners: ['self']
+    // Owners: ['amazon','self','aws-marketplace','microsoft'],
+    // Owners: ['amazon','self'],
+&nbsp;
+    // Owners: ['self'],
+    Owners: myarr 
+&nbsp;
 };
 &nbsp;
-var ec2 = new AWS.EC2();
-var docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
+var ec2 = new AWS.EC2() ;
+var docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' })
 &nbsp;
 var dbparams = {
     TableName: 'AMI-Build-Table',
@@ -236,7 +277,7 @@ var dbparams = {
 var scanparams = {
     TableName: 'AMI-Build-Table',
     Select: 'COUNT'
-};
+}
 &nbsp;
 var dparams = {
     ExpressionAttributeValues: {
@@ -257,6 +298,10 @@ module.exports = function (app) {
 <span class="cstat-no" title="statement not covered" >            if (err) <span class="cstat-no" title="statement not covered" >console.log(err, err.stack); </span>// an error occurred</span>
             else {
 <span class="cstat-no" title="statement not covered" >                res.send(data); </span>          // successful response
+                // console.log("here I am ",data);
+<span class="cstat-no" title="statement not covered" >                console.log(data.Images[1].Tags[0]);</span>
+                // alert(data);
+                
             }
         });
     });
@@ -264,9 +309,9 @@ module.exports = function (app) {
     app.get("/api/find", <span class="fstat-no" title="function not covered" >fu</span>nction (req, res) {
 <span class="cstat-no" title="statement not covered" >        docClient.get(dparams, <span class="fstat-no" title="function not covered" >fu</span>nction (err, data) {</span>
 <span class="cstat-no" title="statement not covered" >            if (err) {</span>
-<span class="cstat-no" title="statement not covered" >                res.status("Error").send(err);</span>
+<span class="cstat-no" title="statement not covered" >                res.status("Error").send(err)</span>
             } else {
-<span class="cstat-no" title="statement not covered" >                res.send(data.Item);</span>
+<span class="cstat-no" title="statement not covered" >                res.send(data.Item)</span>
             }
         });
     });
@@ -289,7 +334,7 @@ module.exports = function (app) {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Mar 17 2019 05:31:29 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon May 06 2019 20:04:05 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
