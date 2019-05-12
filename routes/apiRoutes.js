@@ -1,8 +1,11 @@
 // LOAD dependencies
 var AWS = require('aws-sdk');
 var myarr = ['self'];
+exports.myarr = myarr;
+
+
 console.log("ha ha "+myarr);
-var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'})
+var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
 AWS.config.credentials = credentials ;
 // console.log("this is credentials 1 " + AWS.config.credentials);
 AWS.config.credentials.accessKeyId = process.env.myid ;
@@ -19,7 +22,6 @@ AWS.config.apiVersions = {
 AWS.config.update({
     region: 'us-east-1'
 });
-
 var params = {
     DryRun: false,
     // Owners: ['amazon','self','aws-marketplace','microsoft'],
@@ -31,7 +33,7 @@ var params = {
 };
 
 var ec2 = new AWS.EC2() ;
-var docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' })
+var docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' });
 
 var dbparams = {
     TableName: 'AMI-Build-Table',
@@ -41,7 +43,7 @@ var dbparams = {
 var scanparams = {
     TableName: 'AMI-Build-Table',
     Select: 'COUNT'
-}
+};
 
 var dparams = {
     ExpressionAttributeValues: {
@@ -73,9 +75,9 @@ module.exports = function (app) {
     app.get("/api/find", function (req, res) {
         docClient.get(dparams, function (err, data) {
             if (err) {
-                res.status("Error").send(err)
+                res.status("Error").send(err);
             } else {
-                res.send(data.Item)
+                res.send(data.Item);
             }
         });
     });

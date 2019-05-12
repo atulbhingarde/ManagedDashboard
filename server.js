@@ -5,10 +5,10 @@ var bodyParser = require("body-parser");
 var PORT = process.env.PORT || 3000;
 var app = express();
 var path = require('path');
-
+var yy = "hi there";
 // For Static Content
 var publicDir = path.join(__dirname, 'public');
-app.use("/public", express.static(publicDir))
+app.use("/public", express.static(publicDir));
 
 // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,11 +20,11 @@ app.use("/public", express.static(publicDir))
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-app.use(express.static(publicDir))
+app.use(express.static(publicDir));
 
 // Router
-require("./routes/apiRoutes")(app)
-require("./routes/htmlRoutes")(app)
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {
